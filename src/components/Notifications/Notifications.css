@@ -1,0 +1,21 @@
+.notificationsOuterBox {
+    margin-left: 15px;
+}
+
+.note {
+    background: #fabebf;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: small;
+    border: 2px rgba(0,0,0,0.1);
+    border-style: inset;
+}
+
+.note:hover {
+    cursor: pointer;
+}
+
+.noteTitle {
+    font-size: small;
+    font-weight: bold;
+}

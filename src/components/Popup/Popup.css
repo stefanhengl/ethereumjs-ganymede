@@ -1,0 +1,72 @@
+.Popup {
+    width: 600px;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    margin-left: -325px;
+    margin-top: -200px;
+    z-index: 1002;
+    padding: 0 25px 0 25px;
+
+}
+
+.popup-buttonRow {
+    display: flex;
+    /*position: absolute;
+    bottom: 0;
+    right: 0;*/
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 20px 0 20px 0;
+}
+
+.popupLabelInputPair {
+    display: flex;
+    margin: 5px 0 5px 0;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.popupLabel {
+    flex: 2;
+    font-size: small;
+    font-weight: bold;
+}
+
+.popupInput {
+    flex: 7;
+    margin-left: 0;
+    margin-right: 0;
+    border-collapse: collapse;
+    border: 1px solid lightgray;
+
+}
+
+.popupHeading {
+    margin: 25px 10px 25px 0;
+    font-size: large;
+    color: dimgray;
+}
+
+.popupAdvancedSettingsButton {
+    margin: 20px 0 10px 0;
+    background: transparent;
+    padding: 0;
+    border: none;
+    font-size: small;
+    font-weight: lighter;
+    color: blue;
+    outline: 0;
+
+}
+
+.popupAdvancedSettingsButton:hover {
+    text-decoration: underline;
+    cursor: pointer
+}

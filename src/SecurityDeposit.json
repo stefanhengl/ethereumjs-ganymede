@@ -1,0 +1,509 @@
+{
+  "contract_name": "SecurityDeposit",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "terminate",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "new_beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "setBeneficiary",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "object",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "beneficiary",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "claim",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "returnDeposit",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "sendFunds",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "trustor",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "by",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "Withdrawal",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "by",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "Claimed",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b604051602080610512833981016040528080519150505b60008054600160a060020a031916600160a060020a03831617815560038190556004555b505b6104b78061005b6000396000f300606060405236156100965763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630c08bf88811461009b5780631c31f710146100b05780632812988f146100d157806338af3eed146100e65780634e71d92d146101155780637e88f6031461012a5780638d68cf591461013f578063dc048cf214610149578063ec5630ca146101a1575b600080fd5b34156100a657600080fd5b6100ae6101d0565b005b34156100bb57600080fd5b6100ae600160a060020a0360043516610216565b005b34156100dc57600080fd5b6100ae61026d565b005b34156100f157600080fd5b6100f9610293565b604051600160a060020a03909116815260200160405180910390f35b341561012057600080fd5b6100ae6102a2565b005b341561013557600080fd5b6100ae610313565b005b6100ae610341565b005b341561015457600080fd5b6100ae600480359060446024803590810190830135806020601f8201819004810201604051908101604052818152929190602084018383808284375094965061036295505050505050565b005b34156101ac57600080fd5b6100f961047c565b604051600160a060020a03909116815260200160405180910390f35b600054600160a060020a0390811690331681146101ec57600080fd5b60025462278d0001428190101561020257600080fd5b600054600160a060020a0316ff5b5b505b50565b600054600160a060020a03908116903316811461023257600080fd5b6003541515610210576001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0384161781556003555b5b5b5050565b600154600160a060020a03908116903316811461028957600080fd5b60016004555b5b50565b600154600160a060020a031681565b600054600160a060020a0390811690331681146102be57600080fd5b42600281905560006004557fd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a903390604051600160a060020a03909216825260208201526040908101905180910390a15b5b50565b600154600160a060020a03908116903316811461020257600080fd5b600054600160a060020a0316ff5b5b50565b600054600160a060020a03908116903316811461021357600080fd5b5b5b50565b600154600160a060020a03908116903316811461037e57600080fd5b30600160a060020a03163183101561047557600160a060020a03331683156108fc0284604051600060405180830381858888f1935050505015156103c157600080fd5b7fecb269d89bfded20a4f5e6e51b509df1e3309a995946c9be8d6a8e2ddfa6b89c338484604051600160a060020a03841681526020810183905260606040820181815290820183818151815260200191508051906020019080838360005b838110156104385780820151818401525b60200161041f565b50505050905090810190601f1680156104655780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a15b5b5b505050565b600054600160a060020a0316815600a165627a7a72305820741ebad3c03b309da661a06d9d3c0b636b795d434b32897e9ce6944ef915bff10029",
+  "networks": {
+    "1502543791243": {
+      "events": {},
+      "links": {},
+      "address": "0xaf7a8e3f98b923f8f8aab697d8c0d70125fa016f",
+      "updated_at": 1502544224431
+    },
+    "1502548917409": {
+      "events": {
+        "0x65ac0d8bb8cbc0e989ebd02ddc5161d7c499f7c21792e43fcf170314fe6bcc3f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "sender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Withdrawl",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xce55b7547c37700a86bc97915c9dbf5bde48c443",
+      "updated_at": 1502561907269
+    },
+    "1502561975805": {
+      "events": {
+        "0x65ac0d8bb8cbc0e989ebd02ddc5161d7c499f7c21792e43fcf170314fe6bcc3f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Withdrawl",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xba76c0d02dd0cfd2d9db7cfa61a445963bf53dbf",
+      "updated_at": 1502565441650
+    },
+    "1502619320810": {
+      "events": {
+        "0x65ac0d8bb8cbc0e989ebd02ddc5161d7c499f7c21792e43fcf170314fe6bcc3f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Withdrawl",
+          "type": "event"
+        },
+        "0xa864a8b988e604bb05d6ce75d53efabb5620c45b15380b7bd0c51dcfa71dda03": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "when",
+              "type": "uint256"
+            }
+          ],
+          "name": "CheckIn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xdb71ebde036d92d47ca88431b7e431a245e9c12a",
+      "updated_at": 1502624612535
+    },
+    "1502638539799": {
+      "events": {
+        "0x65ac0d8bb8cbc0e989ebd02ddc5161d7c499f7c21792e43fcf170314fe6bcc3f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Withdrawl",
+          "type": "event"
+        },
+        "0xa864a8b988e604bb05d6ce75d53efabb5620c45b15380b7bd0c51dcfa71dda03": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "when",
+              "type": "uint256"
+            }
+          ],
+          "name": "CheckIn",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x85c2a1589ea451019981231f5ab1246a61f14ced",
+      "updated_at": 1502638586907
+    },
+    "1502638616298": {
+      "events": {
+        "0x65ac0d8bb8cbc0e989ebd02ddc5161d7c499f7c21792e43fcf170314fe6bcc3f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "Withdrawl",
+          "type": "event"
+        },
+        "0xa864a8b988e604bb05d6ce75d53efabb5620c45b15380b7bd0c51dcfa71dda03": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "when",
+              "type": "uint256"
+            }
+          ],
+          "name": "CheckIn",
+          "type": "event"
+        },
+        "0x61a196707fbfc33c88d4ec3155058120cb7ec963b3137af02d6f4ff982448549": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "reason",
+              "type": "string"
+            }
+          ],
+          "name": "Withdrawl",
+          "type": "event"
+        },
+        "0xd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "name": "Claimed",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x2386df983a6905ed024c0491ede1466dccc72b5d",
+      "updated_at": 1502639542000
+    },
+    "1502912667213": {
+      "events": {
+        "0xecb269d89bfded20a4f5e6e51b509df1e3309a995946c9be8d6a8e2ddfa6b89c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "reason",
+              "type": "string"
+            }
+          ],
+          "name": "Withdrawal",
+          "type": "event"
+        },
+        "0xd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "name": "Claimed",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x0a952ce701f9cdddaab943fa0314ca912530ee16",
+      "updated_at": 1502913017614
+    },
+    "1503067841047": {
+      "events": {
+        "0xecb269d89bfded20a4f5e6e51b509df1e3309a995946c9be8d6a8e2ddfa6b89c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "reason",
+              "type": "string"
+            }
+          ],
+          "name": "Withdrawal",
+          "type": "event"
+        },
+        "0xd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "name": "Claimed",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x1b1998c3f4248407fbd3e7b26e9f5d1042d8fe22",
+      "updated_at": 1503068989333
+    },
+    "1503069116472": {
+      "events": {
+        "0xecb269d89bfded20a4f5e6e51b509df1e3309a995946c9be8d6a8e2ddfa6b89c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "reason",
+              "type": "string"
+            }
+          ],
+          "name": "Withdrawal",
+          "type": "event"
+        },
+        "0xd8138f8a3f377c5259ca548e70e4c2de94f129f5a11036a15b69513cba2b426a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "by",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "name": "Claimed",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x1809a4b4c1b112fd10fa27dbd31145d1e34bd6a4",
+      "updated_at": 1503069123996
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1503076940920
+}
